@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { ComponenteAdmin } from './admin/admin.component';
 import { CategoriasComponent } from './admin/categorias/categorias.component';
 import { CrearComponent } from './admin/productos/crear/crear.component';
+import { EditarproductoComponent } from './admin/productos/editarproducto/editarproducto.component';
 import { ProductosComponent } from './admin/productos/productos.component';
 
 const routes: Routes = [
@@ -21,6 +22,9 @@ const routes: Routes = [
       ,
       {
         path: 'productos/crear', component: CrearComponent
+      },
+      {
+        path: 'productos/editar', component: EditarproductoComponent
       }
     ]
 

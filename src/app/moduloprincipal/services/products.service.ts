@@ -19,4 +19,16 @@ export class ProductsService {
   leer(): Observable<apiResult> {
     return this.apiService.get('http://localhost:3000/productos')
   }
+
+  leerPorID(id: any): Observable<apiResult> {
+    return this.apiService.get('http://localhost:3000/productos/leerPorID/' + id)
+  }
+
+  eliminar(id: any): Observable<apiResult> {
+    return this.apiService.delete('http://localhost:3000/productos/eliminar', id);
+  }
+
+  editar(id: any, producto: product): Observable<apiResult> {
+    return this.apiService.put('http://localhost:3000/productos/editar/' + id, producto);
+  }
 }

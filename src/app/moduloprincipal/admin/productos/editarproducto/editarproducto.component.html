@@ -1,8 +1,9 @@
 <div class="row">
     <div class="col-6 bg-light">
 
-        <form [formGroup]="formularioProducto" (ngSubmit)="crearProducto()" novalidate>
+        <form [formGroup]="formularioProducto" (ngSubmit)="actualizarProducto()" novalidate>
 
+            <!-- select -->
             <select class="form-control" formControlName="categoria" aria-label="Default select example">
                 <option *ngFor="let categoria of categorias" value="{{categoria._id}}">{{categoria.nombre}}</option>
             </select>
@@ -42,7 +43,7 @@
                     obligatorio</h4>
             </div>
 
-            <button type="submit" class="btn btn-primary">registrar Producto</button>
+            <button type="submit" class="btn btn-primary">Actualizar Producto</button>
 
         </form>
     </div>

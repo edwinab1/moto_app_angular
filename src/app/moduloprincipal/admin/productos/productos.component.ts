@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { product } from '../../interfaces/product.interface';
 import { ProductsService } from '../../services/products.service';
 
@@ -9,9 +10,13 @@ import { ProductsService } from '../../services/products.service';
 })
 export class ProductosComponent implements OnInit {
 
-  constructor(private productService: ProductsService) { }
+  constructor(
+    private productService: ProductsService,
+    private router: Router
+  ) { }
 
   productos: product[] = [];
+  valorBusqueda: string = '';
 
   ngOnInit(): void {
     this.recuperarInformacion();
@@ -24,10 +29,30 @@ export class ProductosComponent implements OnInit {
 
         if (data.ok) {
           this.productos = data.message;
-
-          console.log(this.productos[0])
         }
       })
 
+
+  }
+
+  editarProducto(id: any) {
+    this.router.navigate(['/admin/productos/editar', { id }])
+  }
+
+  eliminarProducto(id: any) {
+
+    this.productService.eliminar(id)
+      .subscribe(data => {
+        if (data.ok) {
+          console.log(data.message)
+          this.recuperarInformacion();
+        }
+      });
+
+  }
+
+  nuevoProducto() {
+    // this.router.navigate(['/admin/productos/crear', { id: 12 }])
+    this.router.navigate(['/admin/productos/crear'])
   }
 }

@@ -8,6 +8,11 @@ import { SidebarComponent } from './common/sidebar/sidebar.component';
 import { ProductosComponent } from './admin/productos/productos.component';
 import { CategoriasComponent } from './admin/categorias/categorias.component';
 import { CrearComponent } from './admin/productos/crear/crear.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { EditarproductoComponent } from './admin/productos/editarproducto/editarproducto.component';
+import { BuscarpipePipe } from './admin/pipes/buscarpipe.pipe';
+import { TraducirPipe } from './admin/productos/pipes/traducir.pipe';
+import { MonedaPipe } from './admin/productos/pipes/moneda.pipe';
 
 
 @NgModule({
@@ -17,11 +22,18 @@ import { CrearComponent } from './admin/productos/crear/crear.component';
     SidebarComponent,
     ProductosComponent,
     CategoriasComponent,
-    CrearComponent
+    CrearComponent,
+    EditarproductoComponent,
+    BuscarpipePipe,
+    TraducirPipe,
+    MonedaPipe
+  
   ],
   imports: [
     CommonModule,
-    ModuloprincipalRoutingModule
+    ModuloprincipalRoutingModule,
+    ReactiveFormsModule,
+    FormsModule
   ]
 })
 export class ModuloprincipalModule { }

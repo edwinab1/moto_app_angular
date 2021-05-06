@@ -1,4 +1,16 @@
-<button class="btn btn-primary">Agregar Producto</button>
+<div class="row mb-4">
+    <div class="col-8">
+        <input type="text" class="form-control" name="buscar" [(ngModel)]="valorBusqueda"
+            placeholder="buscar producto...">
+
+    </div>
+
+    <div class="col-4">
+        <button class="btn btn-primary" (click)='nuevoProducto()'>Agregar Producto</button>
+
+    </div>
+</div>
+
 
 <table class="table table-hover bg-light">
     <thead>
@@ -11,20 +23,26 @@
             <th scope="col">Precio Unitario</th>
             <th scope="col">Stock Minimo</th>
             <th scope="col">Images</th>
-            <th scope="col"></th>
+            <th scope="col">Acciones</th>
 
         </tr>
     </thead>
 
     <tbody>
-        <tr *ngFor="let producto of productos; index as i">
+        <tr *ngFor="let producto of productos | buscarpipe: valorBusqueda; index as i">
             <td>{{i+1}}</td>
-            <td>{{producto.categoria?.nombre}}</td>
-            <td>{{producto.nombre}}</td>
-            <td>{{producto.descripcion}}</td>
-            <td>{{producto.precio_unitario}}</td>
-            <td>{{producto.stock_minimo}}</td>
+            <td>{{producto?.categoria?.nombre | traducir}}</td>
+            <td>{{producto?.nombre | traducir}}</td>
+            <td>{{producto?.descripcion | traducir}}</td>
+            <td>{{producto?.precio_unitario | moneda }}</td>
+            <td>{{producto?.stock_minimo | moneda}}</td>
+
             <td><img src="{{producto.imagen}}" width="100" height="100"></td>
+            <td>
+                <button class="btn btn-warning" (click)='editarProducto(producto._id)'>Editar</button>
+                <button class="btn btn-danger ml-2" (click)='eliminarProducto(producto._id)'>Eliminar</button>
+
+            </td>
 
         </tr>
     </tbody>
